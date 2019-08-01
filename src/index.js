@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import TodoList from './TodoList';
+import App from './App';
 
-render(<TodoList />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
 
