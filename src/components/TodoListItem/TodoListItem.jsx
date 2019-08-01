@@ -1,10 +1,18 @@
 import React from 'react';
 
-function TodoListItem({ label, important }) {
-    const style = important ? {color: 'red'} : {color: 'black'};
+function TodoListItem({ label, important, done, onToggleDone }) {
+    let classNames;
+
+    if (done) {
+        classNames += ' done';
+    }
+
+    if (important) {
+        classNames += ' important';
+    }    
 
     return(
-        <span style={style}>{ label }</span>
+        <span className={classNames} onClick={onToggleDone}>{ label }</span>
     );
 }
 

@@ -1,0 +1,12 @@
+.important {
+    font-weight: 700;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.active {
+    background: black;
+    color: red;
+}
