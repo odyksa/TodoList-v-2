@@ -3,18 +3,23 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import AddItemForm from './components/AddItemForm';
+import SearchForm from './components/SearchForm';
 
 class App extends Component {
     constructor() {
         super();
         this.idCount = 100;
         this.state = {
-            todos: [this.createItem('Start learning React'), this.createItem('Make awesome app'), this.createItem('Code refactoring'), this.createItem('Deploy app to GitHub Pages')],
-            filter: 'all'
+            todos: [
+                this.createItem('Start learning React'), 
+                this.createItem('Make awesome app'), 
+                this.createItem('Code refactoring'), 
+                this.createItem('Deploy app to GitHub Pages')
+            ],
+            filter: 'all',
+            searchValue: ''
         };
     }
-
-
 
     createItem = (text) => {
         return {
@@ -77,6 +82,22 @@ class App extends Component {
         }
     };
 
+    searchItems = (arr, searchValue) => {
+        if (searchValue.length === 0) {
+            return arr;
+          }
+
+        return arr.filter((el) => {
+            return el.label.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+        });        
+    }
+
+    changeSearchValue = (newValue) => {
+        this.setState({
+            searchValue: newValue
+        });
+    };
+
     render() {
         const { todos, filter } = this.state;
 
@@ -85,6 +106,7 @@ class App extends Component {
                 <header>
                     <h1>TodoList</h1>
                 </header>
+                <SearchForm onChangeSearchValue={this.changeSearchValue} />
                 <p>Todo: {this.state.todos.filter((el) => !el.done).length}, done: {this.state.todos.filter((el) => el.done).length}</p>
 
                 <div className="filters">
@@ -99,7 +121,9 @@ class App extends Component {
                     onToggleImportant={this.onToggleImportant} 
                     onToggleDone={this.onToggleDone}
                     onFilterItems={this.filterItems}
+                    onSearchItems={this.searchItems}
                     filter={this.state.filter}
+                    searchValue={this.state.searchValue}
                 />
                 <AddItemForm onAddItem={this.addItem}/>
             </div>

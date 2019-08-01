@@ -2,9 +2,9 @@ import React from 'react';
 
 import TodoListItem from '../../components/TodoListItem';
 
-function TodoList({ todos, onDeleteItem, onToggleImportant, onToggleDone, onFilterItems, filter }) {
-    const filteredItems = onFilterItems(todos, filter);
-    const todoList = filteredItems.map((item) => {
+function TodoList({ todos, onDeleteItem, onToggleImportant, onToggleDone, onFilterItems, onSearchItems, filter, searchValue }) {
+    const visibleItems = onFilterItems(onSearchItems(todos, searchValue), filter);
+    const todoList = visibleItems.map((item) => {
         const { id, ...rest } = item;
 
         return (
