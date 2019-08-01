@@ -2,14 +2,14 @@ import React from 'react';
 
 import TodoListItem from '../../components/TodoListItem';
 
-function TodoList({ todos }) {
+function TodoList({ todos, onDeleteItem }) {
     const todoList = todos.map((item) => {
         const { id, ...rest } = item;
 
         return (
             <li key={id}>
                 <TodoListItem {...rest} />
-                <button>Delete</button>
+                <button onClick={() => onDeleteItem(id)}>Delete</button>
                 <button>Important</button>
             </li>
         );

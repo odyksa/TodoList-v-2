@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import TodoList from './components/TodoList';
+import AddItemForm from './components/AddItemForm';
 
 class App extends Component {
     constructor() {
@@ -14,20 +15,36 @@ class App extends Component {
 
 
     createItem = (text) => {
-        console.log(this.idCount)
         return {
             label: text,
             important: false,
             id: this.idCount++
         }
-    }
+    };
+
+    addItem = (label) => {
+        const newItem = this.createItem(label);
+        const newArr = [...this.state.todos, newItem];
+
+        this.setState({
+            todos: newArr
+        });
+    };
+
+    deleteItem = (id) => {
+        const newArr = this.state.todos.filter((item) => item.id !== id);
+        this.setState({
+            todos: newArr
+        });
+    };
 
     render() {
         const { todos } = this.state;
 
         return (
             <div className="app">
-                <TodoList todos={todos} />
+                <TodoList todos={todos} onDeleteItem={this.deleteItem} />
+                <AddItemForm onAddItem={this.addItem}/>
             </div>
         );
     }
