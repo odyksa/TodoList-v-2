@@ -38,12 +38,26 @@ class App extends Component {
         });
     };
 
+    onToggleImportant = (id) => {
+        this.setState(({ todos }) => {
+            const index = todos.findIndex((item) => item.id === id);
+            const oldItem = todos[index];
+            const newItem = {...oldItem, important: !oldItem.important};
+            const before = todos.slice(0, index);
+            const after = todos.slice(index + 1);
+
+            return {
+                todos: [...before, newItem, ...after]
+            };
+        });
+    }
+
     render() {
         const { todos } = this.state;
 
         return (
             <div className="app">
-                <TodoList todos={todos} onDeleteItem={this.deleteItem} />
+                <TodoList todos={todos} onDeleteItem={this.deleteItem} onToggleImportant={this.onToggleImportant}/>
                 <AddItemForm onAddItem={this.addItem}/>
             </div>
         );
