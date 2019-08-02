@@ -1,131 +1,107 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import Header from './components/Header';
 import TodoList from './components/TodoList';
 import AddItemForm from './components/AddItemForm';
-import SearchForm from './components/SearchForm';
 
 class App extends Component {
     constructor() {
         super();
+
+        // start value for creating id
         this.idCount = 100;
+
         this.state = {
-            todos: [
-                this.createItem('Start learning React'), 
-                this.createItem('Make awesome app'), 
-                this.createItem('Code refactoring'), 
-                this.createItem('Deploy app to GitHub Pages')
+            todosArr: [
+                this.createTodoItem('Start learning React'),
+                this.createTodoItem('Make awesome app'),
+                this.createTodoItem('Code refactoring'),
+                this.createTodoItem('Deploy app to GitHub Pages')
             ],
             filter: 'all',
-            searchValue: ''
+            searchVal: ''
         };
-    }
+    }    
 
-    createItem = (text) => {
-        return {
-            label: text,
-            important: false,
-            done: false,
-            id: this.idCount++
-        }
-    };
+    // create todo-item
+    createTodoItem = (text) => ({
+        id: ++this.idCount,
+        label: text,
+        important: false,
+        done: false        
+    });
 
-    addItem = (label) => {
-        const newItem = this.createItem(label);
-        const newArr = [...this.state.todos, newItem];
-
-        this.setState({
-            todos: newArr
-        });
-    };
-
-    deleteItem = (id) => {
-        const newArr = this.state.todos.filter((item) => item.id !== id);
-        this.setState({
-            todos: newArr
-        });
-    };
-
-    toggleProperties = (id, propName) => {
-        this.setState(({ todos }) => {
-            const index = todos.findIndex((item) => item.id === id);
-            const oldItem = todos[index];
-            const newItem = {...oldItem, [propName]: !oldItem[propName]};
-            const before = todos.slice(0, index);
-            const after = todos.slice(index + 1);
+    // add todo-item
+    addTodoItem = (label) => {
+        this.setState(({ todosArr }) => {
+            const newTodoItem = this.createItem(label);
+            const newTodosArr = [...todosArr, newTodoItem];
 
             return {
-                todos: [...before, newItem, ...after]
+                todosArr: newTodosArr
             };
         });
-    }
-
-    onToggleImportant = (id) => {
-        this.toggleProperties(id, 'important');
     };
 
-    onToggleDone = (id) => {
-        console.log('done');
-        this.toggleProperties(id, 'done');
-    };
+    // delete todo-item
+    deleteTodoItem = (id) => {
+        this.setState(({ todosArr }) => {
+            const newTodosArr = todosArr.filter((todoItem) => todoItem.id !== id);
 
-    filterItems = (items, filter) => {
-        switch (filter) {
-            case 'all': 
-                return items;
-            case 'active': 
-                return items.filter((item) => !item.done);
-            case 'done': 
-                return items.filter((item) => item.done);
-            default:
-                return items;
-        }
-    };
-
-    searchItems = (arr, searchValue) => {
-        if (searchValue.length === 0) {
-            return arr;
-          }
-
-        return arr.filter((el) => {
-            return el.label.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
-        });        
-    }
-
-    changeSearchValue = (newValue) => {
-        this.setState({
-            searchValue: newValue
+            return {
+                todosArr: newTodosArr
+            };
         });
     };
 
+    // toggle a value of propName for todo-item in this.state.todosArr
+    toggleProperties = (id, propName) => {
+        this.setState(({ todosArr }) => {
+            const indexOfTodoItem = todosArr.findIndex((todoItem) => todoItem.id === id);
+            const oldTodoItem = todosArr[indexOfTodoItem];
+            const newTodoItem = {...oldTodoItem, [propName]: !oldTodoItem[propName]};
+            const arrBeforeOldTodoItem = todosArr.slice(0, indexOfTodoItem);
+            const arrAfterOldTodoItem = todosArr.slice(indexOfTodoItem + 1);
+
+            return {
+                todosArr: [
+                    ...arrBeforeOldTodoItem, 
+                    newTodoItem,
+                    ...arrAfterOldTodoItem]
+            };
+        });
+    };
+
+    // toggle a value of property 'important' of todo-item
+    onToggleImportant = (id) => this.toggleProperties(id, 'important');
+
+    // toggle a value of property 'done' of todo-item 
+    onToggleDone = (id) => this.toggleProperties(id, 'done');
+
     render() {
-        const { todos, filter } = this.state;
+        const { todosArr } = this.state;
 
         return (
             <div className="app">
-                <header>
-                    <h1>TodoList</h1>
-                </header>
-                <SearchForm onChangeSearchValue={this.changeSearchValue} />
-                <p>Todo: {this.state.todos.filter((el) => !el.done).length}, done: {this.state.todos.filter((el) => el.done).length}</p>
+                {/* header */}
+                <Header />
+                {/* /header */}
 
-                <div className="filters">
-                    <button className={ ('all' === filter ? 'active' : '') } onClick={() => this.setState({filter: 'all'})}>All</button>
-                    <button className={ ('active' === filter ? 'active' : '') } onClick={() => this.setState({filter: 'active'})}>Active</button>
-                    <button className={ ('done' === filter ? 'active' : '') }onClick={() => this.setState({filter: 'done'})}>Done</button>
-                </div>    
-
-                <TodoList 
-                    todos={todos} 
-                    onDeleteItem={this.deleteItem} 
-                    onToggleImportant={this.onToggleImportant} 
+                {/* todo-list */}
+                <TodoList
+                    todosArr={todosArr}
+                    onDeleteTodoItem={this.deleteTodoItem}
+                    onToggleImportant={this.onToggleImportant}
                     onToggleDone={this.onToggleDone}
-                    onFilterItems={this.filterItems}
-                    onSearchItems={this.searchItems}
-                    filter={this.state.filter}
-                    searchValue={this.state.searchValue}
                 />
-                <AddItemForm onAddItem={this.addItem}/>
+                {/* /todo-list */}
+
+                {/* add-item-form */}
+                <AddItemForm 
+                    onAddTodoItem={this.addTodoItem} 
+                />
+                {/* /add-item-form */}
             </div>
         );
     }

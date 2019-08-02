@@ -1,22 +1,26 @@
 import React from 'react';
 
-import TodoListItem from '../../components/TodoListItem';
+import './TodoList.css';
+import TodoItem from '../../components/TodoItem';
 
-function TodoList({ todos, onDeleteItem, onToggleImportant, onToggleDone, onFilterItems, onSearchItems, filter, searchValue }) {
-    const visibleItems = onFilterItems(onSearchItems(todos, searchValue), filter);
-    const todoList = visibleItems.map((item) => {
-        const { id, ...rest } = item;
+function TodoList(props) {
+    const { todosArr, onDeleteTodoItem, onToggleImportant, onToggleDone } = props;
+    const todoList = todosArr.map((todoItem) => {
+        const { id, ...otherProps } = todoItem;
 
         return (
             <li key={id}>
-                <TodoListItem {...rest} onToggleDone={() => onToggleDone(id)}/>
-                <button onClick={() => onDeleteItem(id)}>Delete</button>
-                <button onClick={() => onToggleImportant(id)}>Important</button>
+                <TodoItem 
+                    {...otherProps} 
+                    onToggleDone={() => onToggleDone(id)}
+                    onToggleImportant={() => onToggleImportant(id)}
+                    onDeleteTodoItem={() => onDeleteTodoItem(id)}
+                />
             </li>
         );
     });
 
-    return(
+    return (
         <ul className="todo-list">
             { todoList }
         </ul>

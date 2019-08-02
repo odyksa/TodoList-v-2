@@ -1,10 +1,14 @@
-.important {
-    font-weight: 700;
+.app {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 30px;
+    background: #fff;
+    font-family: Oswald, Arial, Helvetica, sans-serif;
 }
 
-.done {
-    text-decoration: line-through;
-}
+
 
 .active {
     background: #666666;
