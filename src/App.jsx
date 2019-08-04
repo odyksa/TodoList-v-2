@@ -23,7 +23,8 @@ class App extends Component {
                 this.createTodoItem('Code refactoring'),
                 this.createTodoItem('Deploy app to GitHub Pages')
             ],
-            searchVal: ''
+            searchVal: '',
+            
         };
     }    
 
