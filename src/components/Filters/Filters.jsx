@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Filters.css';
 
-const Filters = (props) => {
+function Filters(props) {
     const { filter, onChangeFilterVal } = props;
     console.log(filter);
 

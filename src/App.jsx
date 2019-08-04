@@ -6,6 +6,7 @@ import TodoList from './components/TodoList';
 import AddItemForm from './components/AddItemForm';
 import SearchItemForm from './components/SearchItemForm';
 import Filters from './components/Filters';
+import Counters from './components/Counters';
 
 // ADD PROP-TYPES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -139,7 +140,7 @@ class App extends Component {
                     onChangeSearchVal = {this.onChangeSearchVal}
                 />    
                 {/* /search-item-form */}
-
+                
                 {/* filters */}
                 <Filters 
                     onChangeFilterVal={this.onChangeFilterVal}
@@ -159,6 +160,10 @@ class App extends Component {
                     onFilterTodoItem={this.filterTodoItem}
                 />
                 {/* /todo-list */}
+
+                {/* counters */}
+                <Counters todosArr={todosArr} />
+                {/* /counters */}
 
                 {/* add-item-form */}
                 <AddItemForm 

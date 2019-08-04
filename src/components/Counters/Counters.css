@@ -1,0 +1,6 @@
+.counters {
+    color: #d8058c;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-end;
+}
