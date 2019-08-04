@@ -4,8 +4,11 @@ import './TodoList.css';
 import TodoItem from '../../components/TodoItem';
 
 function TodoList(props) {
-    const { todosArr, onDeleteTodoItem, onToggleImportant, onToggleDone } = props;
-    const todoList = todosArr.map((todoItem) => {
+    const { todosArr, searchVal, onDeleteTodoItem, onToggleImportant, onToggleDone, onSearchTodoItem } = props;
+
+    const visibleTodoItems = onSearchTodoItem(todosArr, searchVal);
+    
+    const todoList = visibleTodoItems.map((todoItem) => {
         const { id, ...otherProps } = todoItem;
 
         return (

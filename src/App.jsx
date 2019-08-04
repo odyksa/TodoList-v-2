@@ -4,6 +4,10 @@ import './App.css';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
 import AddItemForm from './components/AddItemForm';
+import SearchItemForm from './components/SearchItemForm';
+import Filters from './components/Filters';
+
+// ADD PROP-TYPES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class App extends Component {
     constructor() {
@@ -19,7 +23,6 @@ class App extends Component {
                 this.createTodoItem('Code refactoring'),
                 this.createTodoItem('Deploy app to GitHub Pages')
             ],
-            filter: 'all',
             searchVal: ''
         };
     }    
@@ -57,6 +60,23 @@ class App extends Component {
         });
     };
 
+    // change a name of todo-item for searching
+    onChangeSearchVal = (newSearchVal) => {
+        this.setState({
+            searchVal: newSearchVal
+        });
+    };
+
+    // search todo-item
+    searchTodoItem = (todosArr, searchVal) => {
+        const visibleTodoItems = todosArr.filter((todoItem) => {
+            return todoItem.label.toLowerCase()
+                .indexOf(searchVal.toLowerCase()) > - 1;
+            });
+
+        return visibleTodoItems;
+    };
+
     // toggle a value of propName for todo-item in this.state.todosArr
     toggleProperties = (id, propName) => {
         this.setState(({ todosArr }) => {
@@ -86,7 +106,7 @@ class App extends Component {
     }
 
     render() {
-        const { todosArr } = this.state;
+        const { todosArr, searchVal } = this.state;
 
         return (
             <div className="app">
@@ -94,12 +114,24 @@ class App extends Component {
                 <Header />
                 {/* /header */}
 
+                {/* search-item-form */}
+                <SearchItemForm
+                    onChangeSearchVal = {this.onChangeSearchVal}
+                />    
+                {/* /search-item-form */}
+
+                {/* filters */}
+                <Filters />
+                {/* /filters */}
+
                 {/* todo-list */}
                 <TodoList
                     todosArr={todosArr}
+                    searchVal={searchVal}
                     onDeleteTodoItem={this.deleteTodoItem}
                     onToggleImportant={this.onToggleImportant}
                     onToggleDone={this.onToggleDone}
+                    onSearchTodoItem={this.searchTodoItem}
                 />
                 {/* /todo-list */}
 
