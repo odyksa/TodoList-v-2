@@ -35,7 +35,7 @@ function TodoItem(props) {
                 <button
                     onClick={onToggleImportant}
                 >
-                    <i className={`fa fa-exclamation ${toggleClassImportantIcon}`} aria-hidden="true" title={ important ? "Make unimportant" : "Make Important"}></i>
+                    <i className={`fa fa-exclamation ${toggleClassImportantIcon}`} aria-hidden="true" title={ important ? "Make unimportant" : "Make important"}></i>
                 </button>
 
                 <button

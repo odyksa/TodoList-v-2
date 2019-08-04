@@ -24,7 +24,7 @@ class App extends Component {
                 this.createTodoItem('Deploy app to GitHub Pages')
             ],
             searchVal: '',
-            
+            filter: 'all'
         };
     }    
 
@@ -78,6 +78,25 @@ class App extends Component {
         return visibleTodoItems;
     };
 
+    // change a value of filter
+    onChangeFilterVal = (newFilterVal) => {
+        this.setState({
+            filter: newFilterVal
+        });
+    };
+
+    // filter todo-item
+    filterTodoItem = (todosArr, filter) => {
+        switch (filter) {
+            case 'active': 
+                return todosArr.filter((todoItem) => todoItem.done === false);
+            case 'done': 
+                return todosArr.filter((todoItem) => todoItem.done);
+            default:
+                return todosArr;
+        }
+    };
+
     // toggle a value of propName for todo-item in this.state.todosArr
     toggleProperties = (id, propName) => {
         this.setState(({ todosArr }) => {
@@ -107,7 +126,7 @@ class App extends Component {
     }
 
     render() {
-        const { todosArr, searchVal } = this.state;
+        const { todosArr, searchVal, filter } = this.state;
 
         return (
             <div className="app">
@@ -122,17 +141,22 @@ class App extends Component {
                 {/* /search-item-form */}
 
                 {/* filters */}
-                <Filters />
+                <Filters 
+                    onChangeFilterVal={this.onChangeFilterVal}
+                    filter={filter}
+                />
                 {/* /filters */}
 
                 {/* todo-list */}
                 <TodoList
                     todosArr={todosArr}
                     searchVal={searchVal}
+                    filter={filter}
                     onDeleteTodoItem={this.deleteTodoItem}
                     onToggleImportant={this.onToggleImportant}
                     onToggleDone={this.onToggleDone}
                     onSearchTodoItem={this.searchTodoItem}
+                    onFilterTodoItem={this.filterTodoItem}
                 />
                 {/* /todo-list */}
 

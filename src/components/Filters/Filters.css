@@ -1,0 +1,28 @@
+.filters {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-button {
+    outline: none;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    padding: 3px;
+    border: 1px solid #d8058c;
+    color: #d8058c;
+    border-right: none;
+    width: 50px;
+    font-family: Oswald, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.filter-button:last-of-type {
+    border-right: 1px solid #d8058c;
+}
+
+.filter-button-active {
+    color: #fff;
+    background: #d8058c;
+}
