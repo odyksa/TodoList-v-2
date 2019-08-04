@@ -32,3 +32,11 @@
 .fa-check-square-o {
     color: #6f1ab9;
 }
+
+.fa-exclamation.pink {
+    color: #d8058c;
+}
+
+.todo-item-val .fa {
+    font-size: 16px;
+}

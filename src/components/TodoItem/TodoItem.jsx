@@ -6,6 +6,7 @@ function TodoItem(props) {
     const { label, done, important, onToggleDone, onToggleImportant, onDeleteTodoItem } = props;
     let clazz = '';
     let toggleClassDoneIcon = done ? 'fa-check-square-o' : 'fa-square-o';
+    let toggleClassImportantIcon = important ? 'pink' : '';
 
     if (done) {
         clazz += ' done';
@@ -15,12 +16,10 @@ function TodoItem(props) {
         clazz += ' important';
     }
 
-
-
     return (
         <p className="todo-item">
             <span
-                className={clazz}
+                className={`todo-item-val ${clazz}`}
             >
                 <button
                     onClick={onToggleDone}
@@ -36,7 +35,7 @@ function TodoItem(props) {
                 <button
                     onClick={onToggleImportant}
                 >
-                    <i className="fa fa-exclamation" aria-hidden="true" title={ important ? "Make unimportant" : "Make Important"}></i>
+                    <i className={`fa fa-exclamation ${toggleClassImportantIcon}`} aria-hidden="true" title={ important ? "Make unimportant" : "Make Important"}></i>
                 </button>
 
                 <button

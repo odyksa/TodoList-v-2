@@ -34,14 +34,16 @@ class App extends Component {
 
     // add todo-item
     addTodoItem = (label) => {
-        this.setState(({ todosArr }) => {
-            const newTodoItem = this.createItem(label);
-            const newTodosArr = [...todosArr, newTodoItem];
-
-            return {
-                todosArr: newTodosArr
-            };
-        });
+        if (label) {
+            this.setState(({ todosArr }) => {
+                const newTodoItem = this.createTodoItem(label);
+                const newTodosArr = [...todosArr, newTodoItem];
+    
+                return {
+                    todosArr: newTodosArr
+                };
+            });
+        }
     };
 
     // delete todo-item
@@ -74,10 +76,14 @@ class App extends Component {
     };
 
     // toggle a value of property 'important' of todo-item
-    onToggleImportant = (id) => this.toggleProperties(id, 'important');
+    onToggleImportant = (id) => {
+        this.toggleProperties(id, 'important');
+    }
 
     // toggle a value of property 'done' of todo-item 
-    onToggleDone = (id) => this.toggleProperties(id, 'done');
+    onToggleDone = (id) => {
+        this.toggleProperties(id, 'done');
+    }
 
     render() {
         const { todosArr } = this.state;

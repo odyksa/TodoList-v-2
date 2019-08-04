@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 
 class AddItemForm extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             label: ''
         };
     }
 
     handleChangeLabel = (e) => {
+        const newLabel = e.target.value;
+
         this.setState({
-            label: e.target.value
+            label: newLabel
         });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         const { label } = this.state;
-        this.props.onAddItem(label);
+        const { onAddTodoItem } = this.props;
+
+        onAddTodoItem(label);
+
         this.setState({
             label: ''
         });
@@ -37,12 +43,12 @@ class AddItemForm extends Component {
                     onChange={this.handleChangeLabel}
                     value={this.state.label}
                 />
-                <button>Add Item</button>
+                <button>
+                    <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                </button>
             </form>
         );
     }
 }
-
-
 
 export default AddItemForm;
