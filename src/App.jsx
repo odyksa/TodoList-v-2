@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
-import AddItemForm from './components/AddItemForm';
 import SearchItemForm from './components/SearchItemForm';
 import Filters from './components/Filters';
 import Counters from './components/Counters';
+import PopUp from './components/PopUp';
 
 // ADD PROP-TYPES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -25,7 +25,8 @@ class App extends Component {
                 this.createTodoItem('Deploy app to GitHub Pages')
             ],
             searchVal: '',
-            filter: 'all'
+            filter: 'all',
+            showPopUp: false
         };
     }    
 
@@ -40,12 +41,13 @@ class App extends Component {
     // add todo-item
     addTodoItem = (label) => {
         if (label) {
-            this.setState(({ todosArr }) => {
+            this.setState(({ todosArr, showPopUp}) => {
                 const newTodoItem = this.createTodoItem(label);
                 const newTodosArr = [...todosArr, newTodoItem];
     
                 return {
-                    todosArr: newTodosArr
+                    todosArr: newTodosArr,
+                    showPopUp: !showPopUp
                 };
             });
         }
@@ -126,6 +128,15 @@ class App extends Component {
         this.toggleProperties(id, 'done');
     }
 
+    // toggle popup
+    togglePopUp = () => {
+        this.setState(({ showPopUp }) => {
+            return {
+                showPopUp: !showPopUp
+            }
+        });
+    }
+
     render() {
         const { todosArr, searchVal, filter } = this.state;
 
@@ -166,10 +177,30 @@ class App extends Component {
                 {/* /counters */}
 
                 {/* add-item-form */}
-                <AddItemForm 
+                {/* <AddItemForm 
                     onAddTodoItem={this.addTodoItem} 
-                />
+                /> */}
                 {/* /add-item-form */}
+
+                {/* button add item */}
+                <button 
+                    className="btn-add-item"
+                    title="Add item"
+                    onClick={this.togglePopUp}
+                >
+                    +
+                </button>
+                {/* /button add */}
+
+                {/* popup */}
+                {
+                    this.state.showPopUp && 
+                    <PopUp 
+                        onToggleUp={this.togglePopUp}
+                        onAddTodoItem={this.addTodoItem}
+                    />
+                }
+                {/* /popup */}
             </div>
         );
     }

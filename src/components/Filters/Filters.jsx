@@ -4,7 +4,6 @@ import './Filters.css';
 
 function Filters(props) {
     const { filter, onChangeFilterVal } = props;
-    console.log(filter);
 
     const buttonsArr = [
         {
