@@ -5,12 +5,11 @@
 .add-item-form input {
     width: 100%;
     border: 1px solid #d8058c;
-    padding: 15px;
+    padding: 15px 30px;
     box-sizing: border-box;
     border-radius: 50px;
     font-family: Oswald, Arial, Helvetica, sans-serif;
     font-size: 18px;
-    text-align: center;
 }
 
 .add-item-form input:focus {

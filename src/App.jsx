@@ -176,12 +176,6 @@ class App extends Component {
                 <Counters todosArr={todosArr} />
                 {/* /counters */}
 
-                {/* add-item-form */}
-                {/* <AddItemForm 
-                    onAddTodoItem={this.addTodoItem} 
-                /> */}
-                {/* /add-item-form */}
-
                 {/* button add item */}
                 <button 
                     className="btn-add-item"

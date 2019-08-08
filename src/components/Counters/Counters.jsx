@@ -8,7 +8,7 @@ function Counters({ todosArr }) {
 
     return (
         <div className="counters">
-            {`Items ${todosArr.length} | Active ${active} | Done ${done}`}
+            {`All ${todosArr.length} | Active ${active} | Done ${done}`}
         </div>
     );
 }

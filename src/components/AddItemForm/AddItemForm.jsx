@@ -9,8 +9,13 @@ class AddItemForm extends Component {
         };
     }
 
+    componentDidMount = () => {
+        this.input.focus();
+    }
+
     handleChangeLabel = (e) => {
         const newLabel = e.target.value;
+
 
         this.setState({
             label: newLabel
@@ -43,6 +48,7 @@ class AddItemForm extends Component {
                     placeholder="What needs to be done"
                     onChange={this.handleChangeLabel}
                     value={this.state.label}
+                    ref={(input) => { this.input = input; }}
                 />
                 <div className="buttons">
                     <button 

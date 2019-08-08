@@ -7,7 +7,7 @@ function PopUp({ onTogglePopUp, onAddTodoItem }) {
     return (
         <div className='popup'>
             <div className='popup-inner'>
-                <h1 className="popup-title">Write todo-item you want to add</h1>
+                <h1 className="popup-title">Type a task you want to add</h1>
                 <AddItemForm
                     onTogglePopUp={onTogglePopUp}
                     onAddTodoItem={onAddTodoItem}
