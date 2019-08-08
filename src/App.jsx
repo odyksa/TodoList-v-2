@@ -188,7 +188,7 @@ class App extends Component {
                     title="Add item"
                     onClick={this.togglePopUp}
                 >
-                    +
+                    <i className="fa fa-plus" aria-hidden="true"></i>
                 </button>
                 {/* /button add */}
 
@@ -196,7 +196,7 @@ class App extends Component {
                 {
                     this.state.showPopUp && 
                     <PopUp 
-                        onToggleUp={this.togglePopUp}
+                        onTogglePopUp={this.togglePopUp}
                         onAddTodoItem={this.addTodoItem}
                     />
                 }

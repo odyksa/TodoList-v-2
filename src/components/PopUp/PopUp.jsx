@@ -3,13 +3,13 @@ import React from 'react';
 import './PopUp.css';
 import AddItemForm from '../AddItemForm';
 
-function PopUp({ onToggleUp, onAddTodoItem }) {
+function PopUp({ onTogglePopUp, onAddTodoItem }) {
     return (
         <div className='popup'>
             <div className='popup-inner'>
-                <h1>Write todo-item you want to add</h1>
+                <h1 className="popup-title">Write todo-item you want to add</h1>
                 <AddItemForm
-                    onToggleUp={onToggleUp}
+                    onTogglePopUp={onTogglePopUp}
                     onAddTodoItem={onAddTodoItem}
                 />
             </div>

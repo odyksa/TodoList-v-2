@@ -1,6 +1,6 @@
 .app {
     width: 100%;
-    max-width: 400px;
+    width: 400px;
     margin: 40px auto;
     border-radius: 20px;
     padding: 30px;
@@ -26,7 +26,7 @@
     outline: none;
     cursor: pointer;
     color: #fff;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 30px;
     text-align: center;
     position: absolute;
