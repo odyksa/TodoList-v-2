@@ -10,7 +10,7 @@ class AddItemForm extends Component {
     }
 
     componentDidMount = () => {
-        this.input.focus();
+        this._input.focus();
     }
 
     handleChangeLabel = (e) => {
@@ -20,7 +20,7 @@ class AddItemForm extends Component {
         this.setState({
             label: newLabel
         });
-    };
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -33,6 +33,10 @@ class AddItemForm extends Component {
         this.setState({
             label: ''
         });
+    }
+
+    getInputRef = (node) => {
+        this._input = node;
     }
 
     render() {
@@ -48,16 +52,17 @@ class AddItemForm extends Component {
                     placeholder="What needs to be done"
                     onChange={this.handleChangeLabel}
                     value={this.state.label}
-                    ref={(input) => { this.input = input; }}
+                    ref={this.getInputRef}
                 />
                 <div className="buttons">
-                    <button 
+                    <button
+                        type="button"
                         title="Exit"
                         onClick={onTogglePopUp}
                     >
                         <i className="fa fa-times" aria-hidden="true"></i>
                     </button>
-                    <button title="Add Item" type="submit">
+                    <button title="Add task" type="submit">
                         <i className="fa fa-plus" aria-hidden="true"></i>
                     </button>
                 </div>

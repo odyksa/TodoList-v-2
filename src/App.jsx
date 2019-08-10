@@ -138,28 +138,17 @@ class App extends Component {
     }
 
     render() {
-        const { todosArr, searchVal, filter } = this.state;
+        const { todosArr, searchVal, filter, showPopUp } = this.state;
 
         return (
             <div className="app">
-                {/* header */}
                 <Header />
-                {/* /header */}
-
-                {/* search-item-form */}
                 <SearchItemForm
-                    onChangeSearchVal = {this.onChangeSearchVal}
+                    onChangeSearchVal = {this.onChangeSearchVal} 
                 />    
-                {/* /search-item-form */}
-                
-                {/* filters */}
                 <Filters 
-                    onChangeFilterVal={this.onChangeFilterVal}
-                    filter={filter}
+                    onChangeFilterVal={this.onChangeFilterVal}                  filter={filter}
                 />
-                {/* /filters */}
-
-                {/* todo-list */}
                 <TodoList
                     todosArr={todosArr}
                     searchVal={searchVal}
@@ -170,13 +159,7 @@ class App extends Component {
                     onSearchTodoItem={this.searchTodoItem}
                     onFilterTodoItem={this.filterTodoItem}
                 />
-                {/* /todo-list */}
-
-                {/* counters */}
                 <Counters todosArr={todosArr} />
-                {/* /counters */}
-
-                {/* button add item */}
                 <button 
                     className="btn-add-item"
                     title="Add item"
@@ -184,17 +167,13 @@ class App extends Component {
                 >
                     <i className="fa fa-plus" aria-hidden="true"></i>
                 </button>
-                {/* /button add */}
-
-                {/* popup */}
                 {
-                    this.state.showPopUp && 
+                    showPopUp && 
                     <PopUp 
                         onTogglePopUp={this.togglePopUp}
                         onAddTodoItem={this.addTodoItem}
                     />
                 }
-                {/* /popup */}
             </div>
         );
     }
