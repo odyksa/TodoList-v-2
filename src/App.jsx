@@ -141,7 +141,7 @@ class App extends Component {
         const { todosArr, searchVal, filter, showPopUp } = this.state;
 
         return (
-            <div className="app">
+            <div className="app" basename="/todolist-v2">
                 <Header />
                 <div className="app-panel">
                     <SearchItemForm
