@@ -1,0 +1,17 @@
+.search-item-form {
+    position: relative;
+}
+.search-item-form input {
+    padding: 3px 5px 3px 25px;
+    font-family: Oswald, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border: 1px solid #d8058c;
+    outline: none;
+}
+
+.search-item-form .fa {
+    position: absolute;
+    left: 6px;
+    top: 7px;
+    color: #d8058c;
+}

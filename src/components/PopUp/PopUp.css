@@ -30,7 +30,7 @@
 
 @keyframes fadeIn {
     from {
-        top: -300px;
+        top: -1000px;
     }
     to {
         top: 25%;

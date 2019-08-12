@@ -10,7 +10,12 @@
     box-shadow: 0px 21px 120px -37px rgba(111,26,185,0.94);
 }
 
-
+.app-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
 
 .active {
     background: #666666;

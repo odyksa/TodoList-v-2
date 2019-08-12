@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './SearchItemForm.css';
+
 class SearchItemForm extends Component {
     constructor() {
         super();
@@ -31,10 +33,11 @@ class SearchItemForm extends Component {
             >
                 <input 
                     type="text" 
-                    placeholder="Type to search todo-item" 
+                    placeholder="Search task" 
                     onChange={this.handleChange}
                     value={this.state.searchVal}
                 />
+                <i className="fa fa-search" aria-hidden="true"></i>
             </form>
         );
     }

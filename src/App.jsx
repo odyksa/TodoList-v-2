@@ -143,12 +143,14 @@ class App extends Component {
         return (
             <div className="app">
                 <Header />
-                <SearchItemForm
-                    onChangeSearchVal = {this.onChangeSearchVal} 
-                />    
-                <Filters 
-                    onChangeFilterVal={this.onChangeFilterVal}                  filter={filter}
-                />
+                <div className="app-panel">
+                    <SearchItemForm
+                        onChangeSearchVal = {this.onChangeSearchVal} 
+                    />    
+                    <Filters 
+                        onChangeFilterVal={this.onChangeFilterVal}              filter={filter}
+                    />
+                </div>                
                 <TodoList
                     todosArr={todosArr}
                     searchVal={searchVal}
