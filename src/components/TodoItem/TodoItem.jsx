@@ -17,16 +17,16 @@ function TodoItem(props) {
     }
 
     return (
-        <p className="todo-item">
+        <div className="todo-item">
             <span
                 className={`todo-item-val ${clazz}`}
             >
                 <button
                     onClick={onToggleDone}
+                    title = { done ? "Make undone" : "Make done" }
                 >
                     <i 
-                        className={`fa ${toggleClassDoneIcon}`}  aria-hidden="true" 
-                        title = { done ? "Make undone" : "Make done" }
+                        className={`fa ${toggleClassDoneIcon}`}  aria-hidden="true"
                     />
                 </button>
                 {label}
@@ -34,17 +34,19 @@ function TodoItem(props) {
             <span className="buttons-panel">
                 <button
                     onClick={onToggleImportant}
+                    title={ important ? "Make unimportant" : "Make important"}
                 >
-                    <i className={`fa fa-exclamation ${toggleClassImportantIcon}`} aria-hidden="true" title={ important ? "Make unimportant" : "Make important"}></i>
+                    <i className={`fa fa-exclamation ${toggleClassImportantIcon}`} aria-hidden="true"></i>
                 </button>
 
                 <button
                     onClick={onDeleteTodoItem}
+                    title="Delete"
                 >
-                    <i className="fa fa-trash" aria-hidden="true" title="Delete"></i>
+                    <i className="fa fa-trash" aria-hidden="true" ></i>
                 </button>
             </span>
-        </p>
+        </div>
     );
 }
 
