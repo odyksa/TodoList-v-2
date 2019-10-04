@@ -1,0 +1,15 @@
+.no-task {
+   margin: 60px 0 30px 0;
+}
+
+.no-task__text {
+   font-size: 20px;
+   text-align: center;
+   text-transform: uppercase;
+   line-height: 1.5;
+   margin-bottom: 15px;
+}
+
+.no-task__pacman {
+   text-align: center;
+}
