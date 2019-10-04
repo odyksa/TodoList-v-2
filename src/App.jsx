@@ -8,6 +8,7 @@ import Filters from './components/Filters';
 import Counters from './components/Counters';
 import PopUp from './components/PopUp';
 import NoTask from './components/NoTask';
+import Button from './components/Button';
 
 // ADD PROP-TYPES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -179,13 +180,10 @@ class App extends Component {
             {noTask}
             {todoList}
             <Counters todosArr={todosArr} />
-            <button
-               className="btn-add-item"
-               title="Add item"
-               onClick={this.togglePopUp}
-            >
-               <i className="fa fa-plus" aria-hidden="true"></i>
-            </button>
+            <Button
+               title="Add task"
+               onTogglePopUp={this.togglePopUp}
+            />
             {
                showPopUp &&
                <PopUp

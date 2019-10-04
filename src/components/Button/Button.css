@@ -1,0 +1,33 @@
+.btn-wrap {
+   display: inline-block;
+   animation: radial-pulse 2s infinite ease-in-out;
+   position: absolute;
+   bottom: -26px;
+   left: calc(50% - 25px);
+   border-radius: 50%;
+   height: 50px;
+   width: 50px;
+}
+
+.btn {
+    background: #d8058c;
+    border: none;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+@keyframes radial-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(216, 5, 140, 0.2);
+  }
+ 
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
+}
